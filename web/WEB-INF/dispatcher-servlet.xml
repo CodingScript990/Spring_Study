@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                http://www.springframework.org/schema/mvc
+                https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- java file 에 있는 bean 등록 애노테이션을 검색을 한다. 기준이 되는 basic 패키지명을 등록한다. -->
+    <context:component-scan base-package="org.example.springboard" />
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <!-- @Controller 활성화 => 주소값 mapping 할 수 있다. -->
+    <mvc:annotation-driven />
+
+    <!-- res url 로 볼 수 있게 해주는 문구 -->
+    <mvc:resources mapping="/res/**" location="/res/" />
+
+    <!-- view resolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <!-- <constructor-arg> : 생성자를 만들어줘라! -->
+        <property name="prefix" value="/WEB-INF/view/" />
+        <property name="suffix" value=".jsp" />
+        <!-- setter 를 사용하라는 소리(String) value : 주소값(string) -->
+    </bean>
+
+</beans>
